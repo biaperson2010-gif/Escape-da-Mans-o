@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape da Mansão - O Mistério das Chaves</title>
+    <meta name="description" content="Um jogo de mistério e puzzles. Explore a mansão, resolva desafios e escape com as chaves e anéis.">
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+    <div id="game-container">
+        <div class="mansion-bg" id="main-bg" style="background-image: url('assets/mansion.png');"></div>
+        
+        <div class="ui-layer">
+            <div class="inventory-bar">
+                <div class="stat-card">
+                    <img src="assets/key.png" alt="Chave">
+                    <span class="stat-label">Chaves:</span>
+                    <span class="stat-value" id="count-keys">0</span>/3
+                </div>
+                <div class="stat-card">
+                    <img src="assets/ring.png" alt="Anel">
+                    <span class="stat-label">Anéis:</span>
+                    <span class="stat-value" id="count-rings">0</span>/2
+                </div>
+            </div>
+
+            <div id="screen-start" class="screen fade-in">
+                <h1>Escape da Mansão</h1>
+                <p class="description">
+                    Você acordou em uma mansão vitoriana trancada. Para sair, você deve explorar os andares, resolver os enigmas escondidos e coletar as 3 Chaves Douradas e os 2 Anéis Antigos.
+                </p>
+                <button class="btn" onclick="Game.start()">Explorar Mansão</button>
+            </div>
+
+            <div id="screen-mansion" class="screen fade-in" style="display: none;">
+                <h2>Selecione um Andar</h2>
+                <p class="description">Cada andar pode conter um desafio ou uma recompensa.</p>
+                <div class="floor-selector" id="floor-grid">
+                    <!-- Dynamic floors will be here -->
+                </div>
+                <button class="btn" style="margin-top: 40px;" onclick="Game.tryEscape()" id="escape-btn">Abrir Portal Final</button>
+            </div>
+
+            <div id="screen-win" class="screen fade-in" style="display: none;">
+                <h1 style="color: var(--success);">Você Escapou!</h1>
+                <p class="description">Com as chaves e anéis em mãos, o portal se abriu e você finalmente está livre da mansão misteriosa.</p>
+                <button class="btn" onclick="location.reload()">Jogar Novamente</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay">
+        <div class="modal-content" id="minigame-container">
+            <span class="close-btn" onclick="UI.closeModal()">&times;</span>
+            <div id="minigame-content">
+                <!-- Minigame logic will inject here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="src/state.js"></script>
+    <script src="src/mansion.js"></script>
+    <script src="src/minigames.js"></script>
+    <script src="src/ui.js"></script>
+    <script src="src/game.js"></script>
+</body>
+</html>
