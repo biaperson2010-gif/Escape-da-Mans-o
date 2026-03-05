@@ -106,7 +106,7 @@ const Minigames = {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Spawn obstacles
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.05) {
             const side = Math.floor(Math.random() * 4);
             let x, y, vx, vy;
             if (side === 0) { x = Math.random() * 400; y = -20; vx = (Math.random() - 0.5) * 2; vy = Math.random() * 2 + 1; }
@@ -165,13 +165,13 @@ const Minigames = {
                 </div>
             `);
         } else {
-            State.damageSanity(5);
+            State.damageSanity(3);
             UI.updateInventory();
             UI.showModal(`
                 <div style="text-align: center;">
                     <h2 style="color: var(--danger); margin-bottom: 20px;">O Fantasma te pegou!</h2>
                     <p style="margin-bottom: 20px;">Um grito ensurdecedor e um frio mortal... Sua sanidade foi estilhaçada.</p>
-                    <p style="color: var(--danger); font-weight: bold; margin-bottom: 30px;">-5 de Sanidade</p>
+                    <p style="color: var(--danger); font-weight: bold; margin-bottom: 30px;">-3 de Sanidade</p>
                     <button class="btn" onclick="Mansion.dismissGhost(${this.currentFloor})">Continuar</button>
                 </div>
             `);
