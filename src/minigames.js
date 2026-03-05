@@ -109,10 +109,10 @@ const Minigames = {
         if (Math.random() < 0.1) {
             const side = Math.floor(Math.random() * 4);
             let x, y, vx, vy;
-            if (side === 0) { x = Math.random() * 400; y = -20; vx = (Math.random() - 0.5) * 4; vy = Math.random() * 5 + 2; }
-            else if (side === 1) { x = 420; y = Math.random() * 400; vx = -(Math.random() * 5 + 2); vy = (Math.random() - 0.5) * 4; }
-            else if (side === 2) { x = Math.random() * 400; y = 420; vx = (Math.random() - 0.5) * 4; vy = -(Math.random() * 5 + 2); }
-            else { x = -20; y = Math.random() * 400; vx = Math.random() * 5 + 2; vy = (Math.random() - 0.5) * 4; }
+            if (side === 0) { x = Math.random() * 400; y = -20; vx = (Math.random() - 0.5) * 2; vy = Math.random() * 2 + 1; }
+            else if (side === 1) { x = 420; y = Math.random() * 400; vx = -(Math.random() * 2 + 1); vy = (Math.random() - 0.5) * 2; }
+            else if (side === 2) { x = Math.random() * 400; y = 420; vx = (Math.random() - 0.5) * 2; vy = -(Math.random() * 2 + 1); }
+            else { x = -20; y = Math.random() * 400; vx = Math.random() * 2 + 1; vy = (Math.random() - 0.5) * 2; }
             obstacles.push({ x, y, vx, vy, r: Math.random() * 15 + 5 });
         }
 
