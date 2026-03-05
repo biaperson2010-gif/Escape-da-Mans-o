@@ -41,20 +41,12 @@ const Mansion = {
                 </div>
             `);
         } else if (content.type === 'ghost') {
-            State.damageSanity(2);
-            UI.showModal(`
-                <div style="text-align: center;">
-                    <h2 style="color: #88f; margin-bottom: 20px;">Um Fantasma Apareceu!</h2>
-                    <div style="font-size: 100px; margin-bottom: 20px;">👻</div>
-                    <p style="margin-bottom: 20px;">Um vulto gélido atravessou seu corpo. Você sente sua sanidade fraquejar.</p>
-                    <p style="color: var(--danger); font-weight: bold; margin-bottom: 30px;">-2 de Sanidade</p>
-                    <button class="btn" onclick="Mansion.dismissGhost(${floorNum})">Continuar</button>
-                </div>
-            `);
+            Minigames.startGhostSurvival(floorNum);
         }
     },
 
     dismissGhost(floorNum) {
+
         State.completeFloor(floorNum);
         UI.closeModal();
         UI.updateInventory();

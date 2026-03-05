@@ -15,6 +15,7 @@ const State = {
     floorContent: {}, // floorNum -> { type: 'key' | 'ring' | 'ghost', completed: boolean }
     gameStarted: false,
     gameOver: false,
+    tttFailureCount: 0,
 
     init() {
         const saved = localStorage.getItem('escape_mansion_state');
@@ -23,6 +24,7 @@ const State = {
             this.stats = parsed.stats || { health: 12, sanity: 20 };
             this.inventory = parsed.inventory || { keys: 0, rings: 0 };
             this.floorContent = parsed.floorContent || {};
+            this.tttFailureCount = parsed.tttFailureCount || 0;
         }
 
         this.generateMansion();
@@ -46,6 +48,30 @@ const State = {
         }
     },
 
+    relocateKey(oldFloor) {
+        // Find an unvisited floor that doesn't have a key or ring
+        const availableFloors = this.floors.filter(f =>
+            f !== oldFloor &&
+            !this.floorContent[f].completed &&
+            this.floorContent[f].type !== 'key' &&
+            this.floorContent[f].type !== 'ring'
+        );
+
+        if (availableFloors.length > 0) {
+            const newFloor = availableFloors[Math.floor(Math.random() * availableFloors.length)];
+            const oldType = this.floorContent[oldFloor].type;
+            const newType = this.floorContent[newFloor].type;
+
+            // Swap contents (effectively moving the key)
+            this.floorContent[newFloor].type = 'key';
+            this.floorContent[oldFloor].type = newType;
+
+            this.save();
+            return true;
+        }
+        return false;
+    },
+
     shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -57,7 +83,8 @@ const State = {
         localStorage.setItem('escape_mansion_state', JSON.stringify({
             stats: this.stats,
             inventory: this.inventory,
-            floorContent: this.floorContent
+            floorContent: this.floorContent,
+            tttFailureCount: this.tttFailureCount
         }));
     },
 
