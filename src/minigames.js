@@ -4,7 +4,7 @@ const Minigames = {
 
     // Ghost Survival state
     ghostGame: {
-        timer: 25,
+        timer: 15,
         interval: null,
         canvas: null,
         ctx: null,
@@ -45,7 +45,7 @@ const Minigames = {
         UI.showModal(`
             <div style="text-align: center; position: relative;">
                 <h2 style="color: #88f; margin-bottom: 10px;">Fuga do Fantasma!</h2>
-                <div id="ghost-timer" style="position: absolute; top: 0; right: 0; font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">25s</div>
+                <div id="ghost-timer" style="position: absolute; top: 0; right: 0; font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">15s</div>
                 <p style="margin-bottom: 15px; font-size: 0.9rem;">Use o mouse/touch para mover a bolinha branca e desviar dos vultos!</p>
                 <canvas id="ghost-canvas" width="400" height="400" style="background: #000; border: 2px solid #333; cursor: none; width: 100%; max-width: 400px; touch-action: none;"></canvas>
             </div>
@@ -60,7 +60,7 @@ const Minigames = {
 
         this.ghostGame.canvas = canvas;
         this.ghostGame.ctx = canvas.getContext('2d');
-        this.ghostGame.timer = 25;
+        this.ghostGame.timer = 15;
         this.ghostGame.obstacles = [];
         this.ghostGame.running = true;
         this.ghostGame.player = { x: 200, y: 200, r: 8 };
