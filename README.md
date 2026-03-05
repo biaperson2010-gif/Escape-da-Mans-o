@@ -7,7 +7,7 @@ Um jogo de mistério e exploração desenvolvido para a web.
     - **Jogo da Velha**: O guardião começa implacável, mas fica mais fácil a cada derrota sua. Perder custa **3 de Vida**. **Empate** faz a chave mudar de andar e custa **1 de Sanidade**.
     - **Jogo da Memória**: Errar a sequência custa **3 de Vida**.
 - **Dois Anéis**: Escondidos aleatoriamente.
-- **Fantasmas**: Ao encontrar um, você deve **sobreviver por 15 segundos** em um minigame de esquiva. Se for pego, perde **5 de Sanidade**. Se sobreviver, o fantasma desaparece.
+- **Fantasmas**: Ao encontrar um, você deve **sobreviver por 25 segundos** em um minigame de esquiva. Se for pego, perde **5 de Sanidade**. Se sobreviver, o fantasma desaparece.
 - **Status Inicial**: 20 Sanidade e 12 Vida.
 - **Vitória**: 3 Chaves + 2 Anéis.
 

@@ -25,6 +25,13 @@ const State = {
             this.inventory = parsed.inventory || { keys: 0, rings: 0 };
             this.floorContent = parsed.floorContent || {};
             this.tttFailureCount = parsed.tttFailureCount || 0;
+
+            // Ensure health and sanity are never loaded as 0 or less
+            if (this.stats.health <= 0 || this.stats.sanity <= 0) {
+                this.stats = { health: 12, sanity: 20 };
+                this.inventory = { keys: 0, rings: 0 };
+                this.floorContent = {};
+            }
         }
 
         this.generateMansion();
