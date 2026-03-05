@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape da Mansão - O Mistério das Chaves</title>
-    <meta name="description" content="Um jogo de mistério e puzzles. Explore a mansão, resolva desafios e escape com as chaves e anéis.">
+    <meta name="description"
+        content="Um jogo de mistério e puzzles. Explore a mansão, resolva desafios e escape com as chaves e anéis.">
     <link rel="stylesheet" href="style/main.css">
 </head>
+
 <body>
     <div id="game-container">
         <div class="mansion-bg" id="main-bg" style="background-image: url('assets/mansion.png');"></div>
-        
+
         <div class="ui-layer">
             <div class="inventory-bar">
+                <div class="stat-card health">
+                    <span class="stat-label" style="color: var(--danger);">Vida:</span>
+                    <span class="stat-value" id="count-health">12</span>/12
+                </div>
+                <div class="stat-card sanity">
+                    <span class="stat-label" style="color: #88f;">Sanidade:</span>
+                    <span class="stat-value" id="count-sanity">20</span>/20
+                </div>
                 <div class="stat-card">
                     <img src="assets/key.png" alt="Chave">
                     <span class="stat-label">Chaves:</span>
@@ -28,25 +39,42 @@
             <div id="screen-start" class="screen fade-in">
                 <h1>Escape da Mansão</h1>
                 <p class="description">
-                    Você acordou em uma mansão vitoriana trancada. Para sair, você deve explorar os andares, resolver os enigmas escondidos e coletar as 3 Chaves Douradas e os 2 Anéis Antigos.
+                    Você acordou em uma mansão vitoriana trancada. Para sair, você deve explorar 10 andares, enfrentar
+                    os guardiões dos enigmas e coletar as 3 Chaves e os 2 Anéis Antigos. Cuidado com os fantasmas e
+                    proteja sua vida!
                 </p>
                 <button class="btn" onclick="Game.start()">Explorar Mansão</button>
             </div>
 
             <div id="screen-mansion" class="screen fade-in" style="display: none;">
                 <h2>Selecione um Andar</h2>
-                <p class="description">Cada andar pode conter um desafio ou uma recompensa.</p>
+                <p class="description">Cada andar pode conter um desafio, uma recompensa ou perigos ocultos.</p>
                 <div class="floor-selector" id="floor-grid">
                     <!-- Dynamic floors will be here -->
                 </div>
-                <button class="btn" style="margin-top: 40px;" onclick="Game.tryEscape()" id="escape-btn">Abrir Portal Final</button>
+                <button class="btn" style="margin-top: 40px;" onclick="Game.tryEscape()" id="escape-btn">Abrir Portal
+                    Final</button>
             </div>
 
             <div id="screen-win" class="screen fade-in" style="display: none;">
                 <h1 style="color: var(--success);">Você Escapou!</h1>
-                <p class="description">Com as chaves e anéis em mãos, o portal se abriu e você finalmente está livre da mansão misteriosa.</p>
+                <p class="description">Com as chaves e anéis em mãos, o portal se abriu e você finalmente está livre da
+                    mansão misteriosa.</p>
                 <button class="btn" onclick="location.reload()">Jogar Novamente</button>
             </div>
+
+            <div id="screen-lose-health" class="screen fade-in" style="display: none;">
+                <h1 style="color: var(--danger);">Você Morreu</h1>
+                <p class="description">Seus pontos de vida chegaram a zero. A mansão reclamou sua alma.</p>
+                <button class="btn" onclick="location.reload()">Tentar Novamente</button>
+            </div>
+
+            <div id="screen-lose-sanity" class="screen fade-in" style="display: none;">
+                <h1 style="color: #88f;">Você Enlouqueceu</h1>
+                <p class="description">Sua sanidade se esvaiu. Agora você faz parte da mansão para sempre.</p>
+                <button class="btn" onclick="location.reload()">Tentar Novamente</button>
+            </div>
+
         </div>
     </div>
 
@@ -66,4 +94,5 @@
     <script src="src/ui.js"></script>
     <script src="src/game.js"></script>
 </body>
+
 </html>

@@ -3,10 +3,15 @@
 Um jogo de mistério e exploração desenvolvido para a web.
 
 ## 🕹️ Como Jogar
-- Explore os 5 andares da mansão.
-- Alguns andares contêm **Chaves Douradas** escondidas.
-- Outros andares possuem **Enigmas de Runas** que recompensam com **Anéis Antigos**.
-- Objetivo: Colete **3 Chaves** e **2 Anéis** para abrir o portal final e escapar.
+- Explore os **10 andares** da mansão.
+- **Três Chaves**: Escondidas em andares protegidos por minigames (Jogo da Velha ou Jogo da Memória).
+- **Dois Anéis**: Espalhados aleatoriamente pela mansão.
+- **Fantasmas**: Aparecem em andares vazios e retiram **2 pontos de Sanidade**.
+- **Perigos**: Falhar nos minigames retira **3 pontos de Vida**.
+- **Status Inicial**: 20 Sanidade e 12 Vida.
+- **Vitória**: Colete **3 Chaves** e **2 Anéis** para abrir o portal final e escapar.
+- **Derrota**: Se sua Vida ou Sanidade chegar a zero, você perde o jogo.
+
 
 ## 🚀 Deploy (GitHub Pages)
 Este projeto foi estruturado para ser publicado facilmente:

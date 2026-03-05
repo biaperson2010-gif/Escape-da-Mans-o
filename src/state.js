@@ -1,44 +1,63 @@
 const State = {
+    stats: {
+        health: 12,
+        sanity: 20
+    },
+    maxStats: {
+        health: 12,
+        sanity: 20
+    },
     inventory: {
         keys: 0,
         rings: 0
     },
     floors: [],
-    minigameFloors: [],
-    completedFloors: [],
+    floorContent: {}, // floorNum -> { type: 'key' | 'ring' | 'ghost', completed: boolean }
     gameStarted: false,
+    gameOver: false,
 
     init() {
-        // Load from localStorage if exists
         const saved = localStorage.getItem('escape_mansion_state');
         if (saved) {
             const parsed = JSON.parse(saved);
+            this.stats = parsed.stats || { health: 12, sanity: 20 };
             this.inventory = parsed.inventory || { keys: 0, rings: 0 };
-            this.completedFloors = parsed.completedFloors || [];
+            this.floorContent = parsed.floorContent || {};
         }
-        
-        // Generate mansion layout
+
         this.generateMansion();
     },
 
     generateMansion() {
-        // 5 floors total.
-        // Identify which floors have minigames (2 random floors for rings).
-        // The other 3 floors have keys.
-        this.floors = [1, 2, 3, 4, 5];
-        
-        // Pick 2 random unique numbers between 1 and 5 for minigames
-        const indices = new Set();
-        while(indices.size < 2) {
-            indices.add(Math.floor(Math.random() * 5) + 1);
+        this.floors = Array.from({ length: 10 }, (_, i) => i + 1);
+
+        // Only generate if not already loaded
+        if (Object.keys(this.floorContent).length === 0) {
+            const possibleFloors = [...this.floors];
+            this.shuffleArray(possibleFloors);
+
+            const keyFloors = possibleFloors.slice(0, 3);
+            const ringFloors = possibleFloors.slice(3, 5);
+            const ghostFloors = possibleFloors.slice(5, 10);
+
+            keyFloors.forEach(f => this.floorContent[f] = { type: 'key', completed: false });
+            ringFloors.forEach(f => this.floorContent[f] = { type: 'ring', completed: false });
+            ghostFloors.forEach(f => this.floorContent[f] = { type: 'ghost', completed: false });
         }
-        this.minigameFloors = Array.from(indices);
+    },
+
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     },
 
     save() {
         localStorage.setItem('escape_mansion_state', JSON.stringify({
+            stats: this.stats,
             inventory: this.inventory,
-            completedFloors: this.completedFloors
+            floorContent: this.floorContent
         }));
     },
 
@@ -52,10 +71,33 @@ const State = {
         this.save();
     },
 
+    damageHealth(amount) {
+        this.stats.health = Math.max(0, this.stats.health - amount);
+        this.save();
+        if (this.stats.health <= 0) this.lose('viva');
+    },
+
+    damageSanity(amount) {
+        this.stats.sanity = Math.max(0, this.stats.sanity - amount);
+        this.save();
+        if (this.stats.sanity <= 0) this.lose('sanity');
+    },
+
     completeFloor(floorNum) {
-        if (!this.completedFloors.includes(floorNum)) {
-            this.completedFloors.push(floorNum);
+        if (this.floorContent[floorNum]) {
+            this.floorContent[floorNum].completed = true;
             this.save();
         }
+    },
+
+    lose(reason) {
+        this.gameOver = true;
+        if (reason === 'viva') {
+            UI.showScreen('screen-lose-health');
+        } else {
+            UI.showScreen('screen-lose-sanity');
+        }
+        localStorage.removeItem('escape_mansion_state');
     }
 };
+
