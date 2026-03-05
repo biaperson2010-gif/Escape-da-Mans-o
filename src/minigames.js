@@ -4,7 +4,7 @@ const Minigames = {
 
     // Ghost Survival state
     ghostGame: {
-        timer: 15,
+        timer: 10,
         interval: null,
         canvas: null,
         ctx: null,
@@ -27,15 +27,13 @@ const Minigames = {
         this.currentFloor = floorNum;
         this.itemType = itemType;
 
-        const games = ['memory', 'tictactoe', 'ghostsurvival'];
+        const games = ['memory', 'tictactoe'];
         this.type = games[Math.floor(Math.random() * games.length)];
 
         if (this.type === 'memory') {
             this.startMemory();
-        } else if (this.type === 'tictactoe') {
-            this.startTicTacToe();
         } else {
-            this.startGhostSurvival(floorNum);
+            this.startTicTacToe();
         }
     },
 
@@ -45,7 +43,7 @@ const Minigames = {
         UI.showModal(`
             <div style="text-align: center; position: relative;">
                 <h2 style="color: #88f; margin-bottom: 10px;">Fuga do Fantasma!</h2>
-                <div id="ghost-timer" style="position: absolute; top: 0; right: 0; font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">15s</div>
+                <div id="ghost-timer" style="position: absolute; top: 0; right: 0; font-size: 1.5rem; font-weight: bold; color: var(--accent-color);">10s</div>
                 <p style="margin-bottom: 15px; font-size: 0.9rem;">Use o mouse/touch para mover a bolinha branca e desviar dos vultos!</p>
                 <canvas id="ghost-canvas" width="400" height="400" style="background: #000; border: 2px solid #333; cursor: none; width: 100%; max-width: 400px; touch-action: none;"></canvas>
             </div>
@@ -60,7 +58,7 @@ const Minigames = {
 
         this.ghostGame.canvas = canvas;
         this.ghostGame.ctx = canvas.getContext('2d');
-        this.ghostGame.timer = 15;
+        this.ghostGame.timer = 10;
         this.ghostGame.obstacles = [];
         this.ghostGame.running = true;
         this.ghostGame.player = { x: 200, y: 200, r: 8 };
@@ -106,13 +104,13 @@ const Minigames = {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Spawn obstacles
-        if (Math.random() < 0.05) {
+        if (Math.random() < 0.03) {
             const side = Math.floor(Math.random() * 4);
             let x, y, vx, vy;
-            if (side === 0) { x = Math.random() * 400; y = -20; vx = (Math.random() - 0.5) * 2; vy = Math.random() * 2 + 1; }
-            else if (side === 1) { x = 420; y = Math.random() * 400; vx = -(Math.random() * 2 + 1); vy = (Math.random() - 0.5) * 2; }
-            else if (side === 2) { x = Math.random() * 400; y = 420; vx = (Math.random() - 0.5) * 2; vy = -(Math.random() * 2 + 1); }
-            else { x = -20; y = Math.random() * 400; vx = Math.random() * 2 + 1; vy = (Math.random() - 0.5) * 2; }
+            if (side === 0) { x = Math.random() * 400; y = -20; vx = (Math.random() - 0.5) * 4; vy = Math.random() * 3 + 2; }
+            else if (side === 1) { x = 420; y = Math.random() * 400; vx = -(Math.random() * 3 + 2); vy = (Math.random() - 0.5) * 4; }
+            else if (side === 2) { x = Math.random() * 400; y = 420; vx = (Math.random() - 0.5) * 4; vy = -(Math.random() * 3 + 2); }
+            else { x = -20; y = Math.random() * 400; vx = Math.random() * 3 + 2; vy = (Math.random() - 0.5) * 4; }
             obstacles.push({ x, y, vx, vy, r: Math.random() * 15 + 5 });
         }
 

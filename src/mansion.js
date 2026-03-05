@@ -42,6 +42,14 @@ const Mansion = {
             `);
         } else if (content.type === 'ghost') {
             Minigames.startGhostSurvival(floorNum);
+        } else {
+            UI.showModal(`
+                <div style="text-align: center;">
+                    <h2 style="color: var(--accent-color); margin-bottom: 20px;">Este andar está vazio.</h2>
+                    <p style="margin-bottom: 30px;">Não há nada aqui além de poeira e silêncio.</p>
+                    <button class="btn" onclick="Mansion.dismissGhost(${floorNum})">Voltar</button>
+                </div>
+            `);
         }
     },
 

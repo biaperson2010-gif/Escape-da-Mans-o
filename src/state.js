@@ -47,11 +47,23 @@ const State = {
 
             const keyFloors = possibleFloors.slice(0, 3);
             const ringFloors = possibleFloors.slice(3, 5);
-            const ghostFloors = possibleFloors.slice(5, 10);
+            const emptyFloors = possibleFloors.slice(5);
 
             keyFloors.forEach(f => this.floorContent[f] = { type: 'key', completed: false });
             ringFloors.forEach(f => this.floorContent[f] = { type: 'ring', completed: false });
-            ghostFloors.forEach(f => this.floorContent[f] = { type: 'ghost', completed: false });
+
+            // Put ghosts only in 3 random remaining floors
+            const ghostIndices = [0, 1, 2, 3, 4];
+            this.shuffleArray(ghostIndices);
+            const selectedGhostIndices = ghostIndices.slice(0, 3);
+
+            emptyFloors.forEach((f, idx) => {
+                if (selectedGhostIndices.includes(idx)) {
+                    this.floorContent[f] = { type: 'ghost', completed: false };
+                } else {
+                    this.floorContent[f] = { type: 'empty', completed: false };
+                }
+            });
         }
     },
 
