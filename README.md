@@ -4,7 +4,7 @@ Um jogo de mistério e exploração desenvolvido para a web.
 
 ## 🕹️ Como Jogar
 - **Três Chaves**: Protegidas por guardiões. 
-    - **Jogo da Velha**: O guardião começa implacável, mas fica mais fácil a cada derrota sua. Perder custa **3 de Vida**. **Empate** faz a chave mudar de andar e custa **1 de Sanidade**.
+    - **Jogo da Velha**: O guardião começa implacável, mas fica mais fácil a cada derrota sua. Perder custa **3 de Vida**. **Empate** custa **1 de Sanidade** e o jogo reinicia até que haja um vencedor.
     - **Jogo da Memória**: Errar a sequência custa **3 de Vida**.
 - **Dois Anéis**: Escondidos aleatoriamente.
 - **Fantasmas**: Ao encontrar um, você deve **sobreviver por 15 segundos** em um minigame de esquiva. Se for pego, perde **3 de Sanidade**. Se sobreviver, o fantasma desaparece.

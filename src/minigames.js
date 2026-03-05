@@ -330,14 +330,13 @@ const Minigames = {
 
     handleDraw() {
         State.damageSanity(1);
-        State.relocateKey(this.currentFloor);
         UI.updateInventory();
         UI.showModal(`
             <div style="text-align: center;">
                 <h2 style="color: var(--accent-color); margin-bottom: 20px;">Empate!</h2>
-                <p style="margin-bottom: 20px;">O guardião se irrita com o empate. A chave foi movida para outro andar!</p>
+                <p style="margin-bottom: 20px;">O guardião se irrita com o empate. Ele exige um vencedor!</p>
                 <p style="color: var(--danger); font-weight: bold; margin-bottom: 30px;">-1 de Sanidade</p>
-                <button class="btn" onclick="UI.closeModal(); Mansion.renderFloors();">Tentar outro andar</button>
+                <button class="btn" onclick="Minigames.startTicTacToe()">Tentar Novamente</button>
             </div>
         `);
     },
