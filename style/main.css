@@ -116,7 +116,7 @@ body {
 }
 
 .ready {
-    animation: pulse success 2s infinite;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -126,6 +126,7 @@ body {
 
     50% {
         transform: scale(1.05);
+        box-shadow: 0 0 40px var(--accent-glow);
     }
 
     100% {
@@ -162,6 +163,13 @@ h1 {
     margin-bottom: 40px;
 }
 
+.btn-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .btn {
     background: var(--accent-color);
     color: black;
@@ -180,6 +188,17 @@ h1 {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px var(--accent-glow);
     filter: brightness(1.1);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.btn-secondary:hover {
+    background: var(--accent-color);
+    color: black;
 }
 
 /* Mansion Grid */

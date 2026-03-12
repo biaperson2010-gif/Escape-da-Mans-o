@@ -143,7 +143,17 @@ const State = {
         } else {
             UI.showScreen('screen-lose-sanity');
         }
+        this.clearState();
+    },
+
+    clearState() {
         localStorage.removeItem('escape_mansion_state');
+        this.stats = { health: 12, sanity: 20 };
+        this.inventory = { keys: 0, rings: 0 };
+        this.floorContent = {};
+        this.tttFailureCount = 0;
+        this.gameOver = false;
+        this.gameStarted = false;
     }
 };
 

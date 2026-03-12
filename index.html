@@ -43,7 +43,11 @@
                     os guardiões dos enigmas e coletar as 3 Chaves e os 2 Anéis Antigos. Cuidado com os fantasmas e
                     proteja sua vida!
                 </p>
-                <button class="btn" onclick="Game.start()">Explorar Mansão</button>
+                <div class="btn-container">
+                    <button class="btn" onclick="Game.start()" id="start-game-btn">Explorar Mansão</button>
+                    <button class="btn btn-secondary" onclick="Game.reset()" id="reset-game-btn"
+                        style="display: none;">Reiniciar Jogo</button>
+                </div>
             </div>
 
             <div id="screen-mansion" class="screen fade-in" style="display: none;">
